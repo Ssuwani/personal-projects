@@ -1,7 +1,8 @@
+import { Button } from "@material-ui/core";
 import React, { useState, useEffect, useRef } from "react";
- 
 
- 
+
+
 function TextInput({ init }) {
   const ref = useRef(null);
   const [text, setText] = useState(init);
@@ -29,11 +30,11 @@ function TextInput({ init }) {
         {editable ? (
           <input type="text" value={text} onChange={(e) => handleChange(e)} onKeyDown={handleKeyDown} />
         ) : (
-          <div onClick={() => editOn()}>{text}</div>
+          <Button variant="outlined" onClick={() => editOn()}>{text}</Button>
         )}
       </div>
     </>
   );
 }
- 
+
 export default TextInput;

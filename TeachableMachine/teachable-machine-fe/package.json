@@ -15,6 +15,7 @@
     "google-image-downloader": "0.0.8",
     "react": "latest",
     "react-dom": "latest",
+    "react-editext": "^4.1.4",
     "react-scripts": "latest"
   },
   "browserslist": {

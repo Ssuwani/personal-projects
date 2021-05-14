@@ -34,6 +34,123 @@
 
 ---
 
+### 이미지를 위한 GridList를 제거한 뒤 React 페이지
+
+---
+
+기본적으로 Input Classes에 Dog랑 Cat을 넣어두었고 수정버튼 또한 잘 동작한다. [react-edittext](https://alioguzhan.github.io/react-editext/)를 이용해서 텍스트 수정을 구현하였다. react-edittext를 발견하기 전에 만들어 놓은 부분이 있다는 거 혹시 모르니 까먹지 말자.! 
+
+
+
+아래의 간단한 페이지를 구현하면서 내가 어려움을 겪었던 부분은 Layout 부분이다. CSS를 제대로 배우지 않아 이 부분이 항상 조금 어렵다. Material ui의 Grid를 이용해서 레이아웃을 설정하였고 내부에 Paper로 화면을 구분지었다.
+
+
+
+![image](./teachable-machine-fe/images/20210514_react2.png)
+
+  
+
+
+
+### 고민중인 내용
+
+---
+
+굳이 train 할 이미지를 사용자에게 보여줘야 할까? 
+
+보여주기 위한 task
+
+1. flask에서 Image URL 생성 
+2. React Gallery 구현
+3. 이미지 삭제 기능 (React에서 요청 -> Flask에 반영)
+
+
+
+정말 간단하게 구현한 다음에 정말 필요하다 생각이 드는 내용들을 추가하는 게 맞는 거 같다는 생각을 한다.!! 빼고 해보자! 
+
+
+
+### 훈련을 위한 데이터 다운로드
+
+---
+
+아래의 google-images-download 덕분에 편하게 다운로드를 받을 수 있는 것 같다.  없었더라면 beautiful soup 다시 찾아보고.. url 긁어와서 다운로드 받는 귀찮음이 있었을텐데 다행이다.
+
+
+
+그래도 나한테 문제가 되는 부분은 있었다.
+
+
+
+└── dog
+    ├── 1.d41586-020-01430-5_17977552.jpg
+    ├── 10.gettyimages-559514141-1.jpg
+    ├── 2.3408.jpg
+    ├── 3.1800x1200_dog_cool_summer_other.jpg.webp
+    ├── 4.maxresdefault.jpg
+    ├── 5.the_science-backed_benefits_of_being_a_dog_owner.jpg
+    ├── 6.puppy-410265.jpg
+    ├── 7.domestic-dog_thumb.jpg.webp
+    ├── 8.dogs_1280p_0.jpg
+    └── 9.yellow-labrador-retriever.jpg
+
+
+
+keyword를 dog로 format을 jpg로 10개의 이미지를 다운로드 받았는데 .jpg.webp 라는 파일도 섞여 있었다. google-images-download에서 미처처리하지 못한 부분이라 생각이 들었다. 그래서 webp to jpg라는 키워드로 검색해보니 생각보다 간단하게 파일 변환이 가능했다.
+
+```python
+from PIL import Image
+
+image = Image.open("file.webp").convert("RGB")
+image.save('file.jpg')
+```
+
+
+
+게다가 이름도 복잡하다고 생각이 들어서 그냥 순서대로 이름을 변경해주었다.
+
+
+
+└── dog
+    ├── 0.jpg
+    ├── 1.jpg
+    ├── 2.jpg
+    ├── 3.jpg
+    ├── 4.jpg
+    ├── 5.jpg
+    ├── 6.jpg
+    ├── 7.jpg
+    ├── 8.jpg
+    └── 9.jpg
+
+
+
+
+
+### [google-images-download](https://pypi.org/project/google_images_download/) issue
+
+---
+
+공식적으로 pip를 통해 패키지를 다운받을 수 있는데 이미지가 ```Unfortunately all 2 could not be downloaded because some images were not downloadable. 0 is all we got for this search filter!`` 다음과 같은 에러가 나온다.. 
+
+```bash
+# pip install google_images_download 
+```
+
+다른분이 기존 google-images-download를 Fork 한 페이지에서 다운로드 받으면 문제가 해결되었다.
+
+```bash
+pip install git+https://github.com/Joeclinton1/google-images-download
+```
+
+
+
+
+
+### React 페이지 초안..
+
+---
+
 정말 없어보이지만.. 시작이니까!!   
 
 전체적인 레이아웃을 고민해봤는데 Teachable Machine 과 같이 한 페이지에 모든 내용을 볼 수 있다면 그렇게 하는게 낫다고 판단하였다.
