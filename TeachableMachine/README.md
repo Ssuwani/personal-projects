@@ -46,4 +46,6 @@ React에서 Static 이미지로 개, 고양이를 보여주려 했으나 어짜�
 
 
 
-![image-20210514125552330](/Users/suwan/Library/Application Support/typora-user-images/image-20210514125552330.png) 
+![image-20210514130822119](./teachable-machine-fe/images/20210514_react.png) 
+
+ 
