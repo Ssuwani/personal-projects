@@ -30,3 +30,20 @@
 
 
 
+**2021.05.14**
+
+---
+
+정말 없어보이지만.. 시작이니까!!   
+
+전체적인 레이아웃을 고민해봤는데 Teachable Machine 과 같이 한 페이지에 모든 내용을 볼 수 있다면 그렇게 하는게 낫다고 판단하였다.
+
+대부분의 디자인을 [Material UI](https://material-ui.com/)의 Component를 이용할 생각이다. 아래의 이미지 리스트 또한 material ui의 GridList를 이용하여 손쉽게 구현할 수 있었다. 
+
+**현재 이미지가 보이지 않는이유**
+
+React에서 Static 이미지로 개, 고양이를 보여주려 했으나 어짜피 사용자가 Class명을 변경하면 React에서 이미지를 다운로드 받을 것이 아니기 때문에 의미가 없다고 생각해서 Flask내에서 이미지 url을 생성해서 그걸 보여주는게 낫다고 판단했다. 그래서 지금부터 Flask로 이동
+
+
+
+![image-20210514125552330](/Users/suwan/Library/Application Support/typora-user-images/image-20210514125552330.png) 
