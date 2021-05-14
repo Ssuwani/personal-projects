@@ -18,5 +18,15 @@
 
 
 
+예상되는 Stack은 다음과 같다.
+
+### Stacks
+
+- PyTorch
+- Flask
+- bentoml(?)
+- React
+- Flutter
+
 
 
