@@ -1,8 +1,10 @@
 # Teachable Machine
 
-구글에서 서비스중인 [TeachbleMachine](https://teachablemachine.withgoogle.com/) 은 손쉽게 머신러닝을 경험할 수 있도록 도와준다. 실제 무거고등학교에서 고등학생을 대상으로 한 AI 교육에서 이 서비스를 사용하여 Model을 다운로드 받고 마스크 유무에 따른 자동문 프로젝트를 진행했다.
+구글에서 서비스중인 [TeachbleMachine](https://teachablemachine.withgoogle.com/) 은 손쉽게 머신러닝을 경험할 수 있도록 도와준다. 나는 실제 무거고등학교에서 고등학생을 대상으로 한 AI 교육에서 이 서비스를 사용하여 Model을 다운로드 받고 마스크 유무에 따른 자동문 프로젝트를 진행했었다.
 
 
+
+### 왜?
 
  TeachableMachine에서는 최종적으로 Model을 다운로드 할 수 있다. 이는 통해 웹 어플리케이션, 모바일 어플리케이션 등에 적용할 수 있지만 머신러닝 프로젝트에 익숙치 않은 개발자의 입장에서 여러가지 문제에 직면할 수 있다.
 
@@ -27,6 +29,66 @@
 - bentoml(?)
 - React
 - Flutter
+
+
+
+
+
+# 개발로그!
+
+**2021.05.17**
+
+---
+
+### 키워드를 받아 학습한 뒤 결과 이미지를 React에서 보여주기
+
+---
+
+위 키워드의 진행과정은 다음과 같다.
+
+1. React에서 클래스명 입력
+2. Training 버튼 클릭 시 클래스명이 Flask로 전송
+3. Flask에서 클래스명에 해당되는 이미지 다운로드
+4. 학습
+5. 학습결과 이미지를 Flask 서버에서 업로드
+6. React에서 이미지 확인
+
+
+
+이 중 5번, 6번의 내용을 작성해두려 한다.
+
+
+
+학습이 완료한 뒤 생성한 아래와 같은 이미지를 react에서 볼 수 있게 하고자 하였다.
+
+![img](./teachable-machine-fe/images/20210517_img2.png)  
+
+
+
+아래의 코드는 flask에서 제공하는 send_file이라는 메서드를 통해 get으로 해당 URL에 접근시 이미지 파일을 볼 수 있게 해준다.
+
+```python
+@app.route('/result/<user_id>', methods=['GET'])
+def give(*user_id*):
+    file_path = f'./train_result_images/{user_id}.png'
+    return send_file(file_path)
+```
+
+
+
+따라서 손쉽게 결과 이미지를 React에서 표현할 수 있었다.
+
+```react
+<img src={resultImageUrl} width={250} />
+```
+
+
+
+여전히 허접하지만 결과 페이지는 다음과 같다.
+
+![img](./teachable-machine-fe/images/20210517_img1.png) 
+
+
 
 
 

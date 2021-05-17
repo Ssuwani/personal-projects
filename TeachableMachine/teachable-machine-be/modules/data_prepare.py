@@ -26,6 +26,18 @@ def download(keyword, count, folder):
     webp_to_jpg_and_rename(keyword, folder)
 
 
+def download_data(userId, classes):
+    user_folder = os.path.join('data', userId)
+    train_folder = os.path.join(user_folder, 'train')
+    val_folder = os.path.join(user_folder, 'val')
+    os.makedirs(train_folder)
+    os.makedirs(val_folder)
+
+    for keyword in classes:
+        download(keyword, 20, train_folder)
+        download(keyword, 10, val_folder)
+
+
 if __name__ == "__main__":
     download("dog", 10, "../data/init/")
     # download("cat", 10, "../data/init/")

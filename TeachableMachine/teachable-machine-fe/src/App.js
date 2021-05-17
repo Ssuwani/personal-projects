@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -17,12 +17,19 @@ import StarIcon from '@material-ui/icons/Star';
 import tileData from './tileData';
 import { Button } from '@material-ui/core';
 import EdiText from 'react-editext'
-// import StarBorder from '@material-ui/icons/StarBorder'
+import axios from 'axios'
 
+function guidGenerator() {
+  var S4 = function () {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  };
+  return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     margin: 10,
+    backgroundColor: '#f0f0f0'
   },
   paper: {
     padding: theme.spacing(2),
@@ -64,10 +71,30 @@ function Copyright() {
 export default function App() {
   const [classOne, setClassOne] = useState("Dog");
   const [classTwo, setClassTwo] = useState("Cat");
+  const [userId, setUserId] = useState('');
+  const [resultImageUrl, setResultImageUrl] = useState('')
   const classes = useStyles();
+  useEffect(() => {
+    setUserId(guidGenerator())
+  }, []);
+  const onTrainButtonClicked = async () => {
+    console.log(`Train Button Cliked classes : ${classOne} ${classTwo}`)
+    const response = await axios({
+      method: 'post',
+      url: 'http://127.0.0.1:5000/training',
+      data: {
+        classes: [classOne, classTwo],
+        userId: userId
+      }
+    });
+    console.log(response)
+    console.log(response.status)
+    if (response.status == 200) {
+      setResultImageUrl(`http://localhost:5000/result/${userId}`)
+    }
+  }
   return (
     <Grid container className={classes.root} spacing={2}>
-
       <Grid item xs={12}>
         <Grid container justify="center" spacing={10}>
 
@@ -101,18 +128,21 @@ export default function App() {
           <Grid item xs={3}>
             <Paper className={classes.paper} elevation={5}>
               <Typography variant="h5">Training</Typography>
+
               <Typography>
-                <Button variant="outlined">Training</Button>
+                <Button variant="outlined" onClick={() => onTrainButtonClicked()}>Training</Button>
               </Typography>
             </Paper>
           </Grid>
           <Grid item xs={3}>
             <Paper className={classes.paper} elevation={5}>
               <Typography variant="h5">Demo & Download</Typography>
+              {/* <img src="http://localhost:5000/result/f06a1839-2c50-e395-1645-0a45da4e9008" width={250} /> */}
+              <img src={resultImageUrl} width={250} />
             </Paper>
+
           </Grid>
         </Grid>
-
       </Grid>
       {/* <Grid item xs={12}>
         <Paper className={classes.control}>
