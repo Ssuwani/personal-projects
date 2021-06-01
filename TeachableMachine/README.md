@@ -36,6 +36,16 @@
 
 # 개발로그!
 
+**2021.06.01**
+
+---
+
+최근에 만든 [make-train-dataset](https://github.com/Ssuwani/make-train-dataset) repo를 기반으로 dataset 구축 파일을 다시 작성하였다.
+
+
+
+
+
 **2021.05.17**
 
 ---

@@ -51,6 +51,7 @@ data_transforms = {
 }
 
 def train(user_id):
+    print("suwan cwd : ", os.getcwd())
     data_dir = './data/'+user_id
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                             data_transforms[x])

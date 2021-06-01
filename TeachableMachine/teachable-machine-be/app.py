@@ -31,7 +31,7 @@ def training():
     post_data = request.get_json()
     userId = post_data['userId']
     classes = post_data['classes']
-    download_data(userId, classes)
+    download(userId, classes, 10, 0.2)
     train(userId)
     return "Training Complete"
 
