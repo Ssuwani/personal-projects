@@ -42,7 +42,7 @@
 
 **오늘은 demo 페이지를 만들어 보았습니다!**
 
-![image-20210602171006569](/Users/suwan/Documents/personal-projects/TeachableMachine/teachable-machine-fe/images/20210602_img.png)
+![image-20210602171006569](./teachable-machine-fe/images/20210602_img.png)
 
 사용자의 학습이 종료되고 나면 pt 파일과 class_index.json 파일을 생성해서 demo 폴더 내에 위치시킵니다.
 
