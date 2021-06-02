@@ -36,6 +36,42 @@
 
 # 개발로그!
 
+**2021.06.02**
+
+---
+
+**오늘은 demo 페이지를 만들어 보았습니다!**
+
+![image-20210602171006569](/Users/suwan/Documents/personal-projects/TeachableMachine/teachable-machine-fe/images/20210602_img.png)
+
+사용자의 학습이 종료되고 나면 pt 파일과 class_index.json 파일을 생성해서 demo 폴더 내에 위치시킵니다.
+
+
+
+**데모 프로젝트 다운로드**
+
+React에서 다운로드 버튼을 누르면 Flask에서 demo folder를 zip형태로 압축한 뒤 flask의 `send_from_directory` 메서드를 route로 연결하면 react에서 다운로드 받을 수 있습니다.
+
+
+
+이후에도 demo를 실행하기 위해 해야할 일이 많이 있습니다.
+
+- `npm install` 관련 패키지 설치하기
+- 파이썬 가상환경 생성 및 패키지 설치
+- flask 서버 실행 `flask run`  , react 스크립트 실행 `react start` 
+
+
+
+복잡한 과정들이다보니 빠르게 실행할 수 있게 bash 파일을 하나 만들자!
+
+
+
+
+
+
+
+
+
 **2021.06.01**
 
 ---

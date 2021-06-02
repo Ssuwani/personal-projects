@@ -264,7 +264,7 @@ def train(user_id):
     plt.ioff()
     # plt.show()
     plt.savefig(f'./train_result_images/{user_id}.png', dpi=300)
-
+    torch.save(model_conv.state_dict(), './models/'+user_id+'.pt')
     ######################################################################
     # 더 배워볼 내용
     # -----------------
