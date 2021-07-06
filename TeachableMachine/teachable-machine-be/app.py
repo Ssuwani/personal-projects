@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, send_from_directory
 from modules import *
 from flask_cors import CORS
 app = Flask(__name__)
@@ -30,6 +30,7 @@ def training():
     # 4. Deploy code??..
     post_data = request.get_json()
     userId = post_data['userId']
+    print(userId)
     classes = post_data['classes']
     download(userId, classes, 10, 0.2)
     train(userId)
@@ -45,3 +46,17 @@ def post_test():
 def give(user_id):
     file_path = f'./train_result_images/{user_id}.png'
     return send_file(file_path)
+
+@app.route('/example/<user_id>', methods=["GET"])
+def example(user_id):
+    base = f'./data/{user_id}/val/'
+    cate = os.listdir(base)[0]
+    image = os.listdir(os.path.join(base, cate))[0]
+    image_path = os.path.join(base,cate,image)
+    return send_file(image_path)
+
+
+@app.route('/download_model', methods=['GET', 'POST'])
+def download_model():
+    makezip('example_classifier')
+    return send_from_directory(directory='.', path='react_classifier.zip')
